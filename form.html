@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Note App Login Form</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <form method="post" onsubmit="return validateForm()" action="#">
+        <div class="panel">
+           <h1>Login To Note App</h1>
+               <div class="tableheader">Full Name</div>
+               <input type="text" id="name" placeholder="Enter Your Full Name" value="">
+               <div class="tableheader tableLower"></div>
+                <div class="tableheader">Email ID</div>
+               <input type="text" id="email"  placeholder="Enter Your Email" value="">
+               <div class="tableheader tableLower"></div> 
+               <div class="tableheader">Phone Number</div>
+               <input type="number" id="phoneNumber"  placeholder="Enter Your Phone Number" value="">
+               <div class="tableheader tableLower"></div>
+                <div class="tableheader">Password</div>
+               <input type="password" id="password"  placeholder="Enter Your Password" value="">
+               <div class="tableheader tableLower"></div>
+               <div class="tableheader">Confirm Password</div>
+               <input type="password" id="cpPassword"  placeholder="Confirm Password" value="">
+               <div class="tableheader tableLower"></div>
+               <!-- <i class="far fa-eye" id="togglePassword"></i> -->
+               <div class="login-checkbox">
+                 <input type="checkbox" id="log-input" name="checkbox" value="" onclick="togglePassword()">
+                 <label for="checkbox" class="login-lable">Show Password</label>
+               </div> 
+               <input type="submit" name="login" value="Login" class="btnSubmit">
+          </div>
+       </form> 
+
+       <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    background-color: #ffffea;;
+}
+
+.headerSec {
+    width: 100vw;
+    height: 4rem; 
+    display: flex;
+    align-items: center;
+}
+
+.headerSec, .add-btn:hover {
+    background: #FFC107;
+}
+
+.head-logo {
+    font-size: 2rem;
+    font-family: fantasy;
+    padding: 0 1rem;
+}
+
+.btnSec, .noteSec, .iconSec {
+    display: flex;   
+}
+
+.btnSec, .iconSec {
+    justify-content: flex-end;
+}
+
+.add-btn {
+    font-size: 1.1rem;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+    width: 10rem;
+    margin: 1rem 0.8rem;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 2.2rem;
+    border: 2px solid #FF5722;
+    color: #FF5722;
+    /* transition: 2s;   */
+}
+
+.add-btn:hover {
+    color: white;
+    border-color: #FFC107;
+}
+
+.chevronRight, .noteIcon {
+    padding-right: 0.5rem;
+}
+
+/* Note Area Design */
+.noteSec {
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.note {
+    background-color: #fff;
+    width: 20vw;
+    height: 15rem;
+    /* max-height: 100%; */
+    border: 2px solid #ff9e00;
+    margin: 1rem;
+    border-radius: 8px;
+    box-shadow: 5px 5px 8px 0 rgba(0,0,0,0.2);
+}
+
+.note, .contentArea, .main {
+    overflow: auto; 
+}
+
+.iconSec {
+    padding: 0.5rem 0;
+    background: antiquewhite;
+    position: sticky;
+    top: 0px;
+}
+
+.iconSec i {
+    color: chocolate;
+    font-size: 1.4rem;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.iconSec i:hover, .textEdit:hover  {
+    color: #fb6d00;
+}
+
+.textEdit {
+    font-family: cursive;
+    font-size: 1rem;
+    margin-left: 0.2rem;
+    color: dimgrey;
+}
+
+.contentArea, .main {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    width: 18.8rem;
+    height: 12.1rem;
+    border: none;
+}
+
+.contentArea:focus-visible {
+    outline: none;
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+/* Form CSS Start Here */
+
+/* login & register page css*/
+
+.panel {
+    width: 500px;
+    padding: 20px 60px 40px;
+    background: #FF9800;
+    color: white;
+    margin: 45px auto!important;
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+}
+
+.panel .state i.fa-unlock-alt {
+    font-size: 25px;
+    height: 35px;
+    width: 35px;
+    padding: 3px;
+    border: 2px solid;
+    margin-top: -9px;
+}
+
+.panel h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 27px;
+    font-weight: 600;
+    margin: 21px 0px;
+}
+
+.tableheader {    
+    padding: 6px 16px;
+    text-align: left;
+}
+
+.tableLower {
+    color: maroon;
+    font-weight: bold;
+    margin-top: -9px;
+}
+
+.bottom-text a, .login-checkbox a {
+    color: #d6d6d6;
+    font-weight: 600;
+    margin-left: 3px;
+}
+
+.bottom-text a:hover, .login-checkbox a:hover {
+    color: #f93232;
+}
+
+.login-checkbox a {
+   margin-left: 0px!important; 
+}
+
+.btnSubmit {
+    width: 93%;
+    border-radius: 6px;
+    background-color: #f93232;
+    position: relative;
+    line-height: 45px;
+    font-weight: 600;
+    color: white;
+    margin: 20px 0;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.panel input[type='text'], .panel input[type='password'], .panel input[type='email'], .panel input[type='Number'] {
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    padding-left: 15px;
+    width: 93%;
+    margin-bottom: 10px;
+}
+
+.panel input:focus-visible, .error, .panel input.error {
+    border: 3px solid red;
+}
+
+/* Hide Input Type Number Arrows in Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.login-lable {
+    font-weight: 500; 
+}
+
+.login-checkbox input:checked+label {
+   font-weight: 500; 
+}
+
+.login-checkbox span {
+   padding-left: 77px;   
+}
+
+/* register page */
+
+.panel .state i.fa-lock-alt {
+    font-size: 25px;
+    height: 35px;
+    width: 35px;
+    padding: 3px;
+    border: 2px solid;
+    margin-top: -9px;
+}
+
+.register-pannel {
+    width: 560px;
+}

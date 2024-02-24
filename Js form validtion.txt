@@ -1,0 +1,10 @@
+1) Feild Should Not Empty
+2) Email - @ & .com should be present, Min 2 char After . in Mail ID 
+3) Password Show and Hide
+4) Password Criteria 
+   a) Min 8 Char
+   b) One Upper Case
+   c) One Lower Case
+   d) One Number
+   e) One Symbol
+5) Form Design
