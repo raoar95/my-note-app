@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Note App Login Form</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>My Note App Sign Up</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <form method="post" onsubmit="return validateForm()" action="#">
+      <form method="post" onsubmit="return validateForm()" action="#">
         <div class="panel">
-           <h1>Login To Note App</h1>
+           <h1>Sign Up To Note App</h1>
                <div class="tableheader">Full Name</div>
                <input type="text" id="name" placeholder="Enter Your Full Name" value="">
                <div class="tableheader tableLower"></div>
@@ -21,10 +21,10 @@
                <input type="number" id="phoneNumber"  placeholder="Enter Your Phone Number" value="">
                <div class="tableheader tableLower"></div>
                 <div class="tableheader">Password</div>
-               <input type="password" id="password"  placeholder="Enter Your Password" value="">
+               <input type="password" id="password" class="passImput"  placeholder="Enter Your Password" value="">
                <div class="tableheader tableLower"></div>
                <div class="tableheader">Confirm Password</div>
-               <input type="password" id="cpPassword"  placeholder="Confirm Password" value="">
+               <input type="password" id="cpPassword" class="passImput"  placeholder="Confirm Password" value="">
                <div class="tableheader tableLower"></div>
                <!-- <i class="far fa-eye" id="togglePassword"></i> -->
                <div class="login-checkbox">
@@ -35,6 +35,6 @@
           </div>
        </form> 
 
-       <script src="js/main.js"></script>
+       <script src="../js/main.js"></script>
 </body>
 </html>

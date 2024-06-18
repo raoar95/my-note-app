@@ -1,17 +1,21 @@
 * {
     box-sizing: border-box;
     margin: 0;
+    padding: 0;
 }
 
 body {
-    background-color: #ffffea;;
+    background-color: #ffffea;
 }
 
 .headerSec {
     width: 100vw;
     height: 4rem; 
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
 }
 
 .headerSec, .add-btn:hover {
@@ -21,7 +25,6 @@ body {
 .head-logo {
     font-size: 2rem;
     font-family: fantasy;
-    padding: 0 1rem;
 }
 
 .btnSec, .noteSec, .iconSec {
@@ -30,6 +33,22 @@ body {
 
 .btnSec, .iconSec {
     justify-content: flex-end;
+}
+
+.loginSec {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: sans-serif;
+    color: #000;
+}
+
+.loginSec i {
+    color: orangered;
+}
+
+.editBtn {
+    user-select: none;
 }
 
 .add-btn {
@@ -56,6 +75,7 @@ body {
     padding-right: 0.5rem;
 }
 
+
 /* Note Area Design */
 .noteSec {
     justify-content: space-evenly;
@@ -64,9 +84,6 @@ body {
 
 .note {
     background-color: #fff;
-    width: 20rem;
-    height: 15rem;
-    /* max-height: 100%; */
     border: 2px solid #ff9e00;
     margin: 1rem;
     border-radius: 8px;
@@ -75,6 +92,11 @@ body {
 
 .note, .contentArea, .main {
     overflow: auto; 
+}
+
+.note, .contentArea {
+    min-width: 20rem;
+    min-height: 15rem;
 }
 
 .iconSec {
@@ -105,8 +127,6 @@ body {
 .contentArea, .main {
     padding: 0.5rem;
     font-size: 1.2rem;
-    width: 18.8rem;
-    height: 12.1rem;
     border: none;
 }
 

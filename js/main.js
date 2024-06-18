@@ -2,9 +2,10 @@ let addBtn = document.querySelector('.add-btn');
 let noteSec = document.querySelector('.noteSec');
 
 
-//Updating Notes to Local Storage
+// UPDATING NOTES TO LOCAL STORAGE
 
 const updateLocalStorageData = () => {
+
 	const notesData = document.querySelectorAll('textarea');
 	const noteStorage = [];
 
@@ -16,29 +17,38 @@ const updateLocalStorageData = () => {
 }
 
 
-// Getting Notes from Local Storage When Page Loaded
-// const noteStorage = JSON.parse(localStorage.getItem('noteStorage'));
 
-// if(noteStorage) {noteStorage.forEach(function(){function addBtnFunction(note)})};
-// console.log(note);
+// ADD NOTES FUNCTION
 
-// addBtn.addEventListener('click', function () {
-//     function addBtnFunction (text = '') {
+const addBtnFunction = (text = "") => {
 
+	// CHECK FOR EMPTY NOTES IF EXIST
 
-const addBtnFunction = (text = '') => {
-	// Store HTML Content in Const
-	const noteHtmlData = `<div class="note">
-    <div class="iconSec">
-        <i class="fas fa-edit editBtn"><span class="textEdit">EDIT</span></i>
-        <i class="fas fa-trash-alt removeBtn"><span class="textEdit">REMOVE</span></i>
-    </div>
-    <div class="main ${text ? '' : 'hidden'}"></div>
-    <textarea class="contentArea ${text ? 'hidden': ''}"></textarea> 
+	const existingTextareas = document.querySelectorAll('textarea');
+
+	for (let textarea of existingTextareas) {
+		if (textarea.value.trim() === "") {
+			alert('Please fill the existing empty note before adding a new one.');
+			return;
+		}
+	}
+	
+
+	// STORED HTML CONTENT IN CONST
+
+	const noteHtmlData = `
+    <div class="note">
+        <div class="iconSec">
+            <i class="${text ? "fas fa-edit" : "fa-solid fa-bookmark"} editBtn"><span class="textEdit">${text ? "EDIT" : "SAVE"}</span></i>
+            <i class="fas fa-trash-alt removeBtn"><span class="textEdit">REMOVE</span></i>
+        </div>
+        <div class="main ${text ? "" : "hidden"}"></div>
+        <textarea class="contentArea ${text ? "hidden" : ""}"></textarea> 
     </div>`;
 
-	// Added Note in Note Section
-	// noteSec.innerHTML ='<div class="note"><div class="iconSec"><i class="fas fa-edit"><span class="textEdit">EDIT</span></i><i class="fas fa-trash-alt"><span class="textEdit">REMOVE</span></i></div><div class="contentArea" contenteditable="true"</div></div>';
+
+	// ADD NOTE IN NOTE SECTION AT BEGNING
+
 	noteSec.insertAdjacentHTML('afterbegin', noteHtmlData);
 
 	let noteItem = noteSec.querySelector('.note');
@@ -46,29 +56,52 @@ const addBtnFunction = (text = '') => {
 	let removeBtn = noteSec.querySelector('.removeBtn');
 	let mainDiv = noteSec.querySelector('.main');
 	let contentArea = noteSec.querySelector('textarea');
+	let editBtnIcon = editBtn.querySelector('.fas');
+    let editBtnTxt = editBtn.querySelector('.textEdit');
 
-	// Add Click Event in Remove Button to Removing Note
+
+	// ADD CLICK EVENT IN REMOVE BUTTON FOR REMOVING NOTE
+
 	removeBtn.addEventListener('click', function() {
-		//    for (let i = 0; i < noteItems.length; i++ ){
+
 		noteItem.remove();
 
-		// if (contentArea === '') {
-		//     noteItem.remove();
-		// }
-		//    }
 		updateLocalStorageData();
+
 	});
 
-	// Add Click Event in Edit Button to toggle Between Main div & Text Area 
+
+	// ADD CLICK EVENT IN EDIT BUTTON TO TOGGLE BETWEEN MAIN DIV & TEXT AREA 
+
 	contentArea.value = text;
 	mainDiv.innerHTML = text;
 
 	editBtn.addEventListener('click', function() {
+
 		mainDiv.classList.toggle('hidden');
 		contentArea.classList.toggle('hidden');
+
+		// TOGGLE ADD & SAVE
+
+		if (!mainDiv.classList.contains('hidden')) {
+            editBtn.classList.remove('fa-bookmark');
+            editBtn.classList.add('fa-edit');
+            editBtnTxt.innerText = 'EDIT';
+        } 
+		
+		else {
+            editBtn.classList.remove('fa-edit');
+            editBtn.classList.add('fa-bookmark');
+            editBtnTxt.innerText = 'SAVE';
+        }
+
 	});
 
+
+	// UPDATING TEXT AREA VAALUE IN MAIN DIV
+
 	contentArea.addEventListener('change', function(event) {
+
 		const noteText = event.target.value;
 		mainDiv.innerHTML = noteText;
 
@@ -78,16 +111,17 @@ const addBtnFunction = (text = '') => {
 };
 
 
-// Getting Notes from Local Storage When Page Loaded
+
+// GETTING NOTES FROM LOCAL STORAGE WHEN PAGE LOADED
 
 const noteStorage = JSON.parse(localStorage.getItem('noteStorage'));
 
 if (noteStorage) {
 	noteStorage.forEach((note) => addBtnFunction(note))
 };
-// console.log(note);
 
 
+// ADD CLICK EVENT IN ADD NOTE BUTTON
 
 addBtn.addEventListener('click', () => addBtnFunction());
 
@@ -98,15 +132,7 @@ addBtn.addEventListener('click', () => addBtnFunction());
 
 
 
-
-
-
-
-
-
-
 // JS FORM VALIDATION START
-
 
 let tablLower = document.querySelector('.tableLower')
 let input = document.querySelectorAll('input');
@@ -130,71 +156,24 @@ function feildNotBlank() {
 }
 
 
-// Login Form Validation
-
-// let myInput = document.querySelector("#one");
-// let validateText = document.querySelector(".tableLower");
-
-// document.querySelector("#one").addEventListener('change', (event) => {
-// console.log(event.target.value);
-
-//     // if(event.target.value === "") {
-//     //     // validateText.innerHTML = "Cant be blank";
-//     // } 
-
-//     // else {
-//     //     null;
-//     // }
-
-// });
-
-
-
-
-// if (name === "") {
-//     setErrorMsg("#name", "This Feild Cannot be Blank");
-//     if (email === "") {
-//         setErrorMsg("#email", "This Feild Cannot be Blank");
-//         if (number === "") {
-//             setErrorMsg("#phoneNumber", "This Feild Cannot be Blank");
-//             if (password === "") {
-//                 setErrorMsg("#password", "This Feild Cannot be Blank");
-//                 return false;
-//             }
-//         }
-//      } 
-//  } 
-
-
-//  else if (name.length > 2) {
-//         setErrorMsg("#name", "Error")
-//         return false;
-//  }
-
-
-//  else {
-//     return true;
-//  }
-
-
-
+// LOGIN FORM VALIDATION
 
 let myform = document.querySelector("form");
 
 
-// Set Error Msg if validation false
+// SET ERROR MSG IF VALIDATION FALSE
 
 function setErrorMsg(id, errorMsg) {
 	let falseInput = document.querySelector(id);
 	// console.log(falseInput);
 	falseInput.nextElementSibling.innerHTML = errorMsg;
 	falseInput.classList.add("error");
-	// falseInput.focus();
+	// falseInput.forEach((curElem) => curElem.focus());
 }
 
 
 
-// Email Validation Function
+// EMAIL VALIDATION FUNCTION
 
 function emailValidation(email) {
 	let atTheRateSymbol = email.indexOf("@");
@@ -224,49 +203,6 @@ function emailValidation(email) {
 
 }
 
-// function passValidation (password) {
-
-
-// let upperCasePattern = /[A-Z]/;  // Check any UPPERCASE letter in given String.
-// let lowerCasePattern = /[a-z]/;  // Check any lowecase letter in given String.
-// let numberPattern = /[0-9]/;     // Check any Number in given String.
-
-// // let checkUpperPatern = upperCasePattern.test(password); 
-// // let checkLowerPatern = lowerCasePattern.test(password);
-// // let checkNumberPatern = numberPattern.test(password);
-
-// // Test the Passsword wit .test() Method
-
-// if(password.search(/[0-9]/) == -1) {
-//   return false;
-// }
-
-
-// // if(checkLowerPatern) {
-// //     return false;
-// // }
-
-
-// // if(checkNumberPatern) {
-// //     return false;
-// //   }
-
-// //  if(lowerCasePattern.test(password)) {
-// //     return false;
-// //  }
-
-
-// //else if(numberPattern.test(password)) {
-// //     return false;
-// // }
-
-// // else {
-// //     return true;
-// // }
-
-// }
-
-
 
 function validateForm() {
 
@@ -282,7 +218,7 @@ function validateForm() {
 
 
 
-	// Name Validation
+	// NAME VALIDATION
 
 	if (name === "") {
 		setErrorMsg("#name", "Name Feild Cannot be Blank");
@@ -291,36 +227,44 @@ function validateForm() {
 
 
 
-	// Email Validation
+	// EMAIL VALIDATION
 
 	if (email === "") {
 		setErrorMsg("#email", "Email Feild Cannot be Blank");
 		returnVal = false;
-	} else if (!emailValidation(email)) {
+	} 
+	
+	else if (!emailValidation(email)) {
 		setErrorMsg("#email", "Please Enter Valid Email");
 		returnVal = false;
 	}
 
 
 
-	// Phone Number Validation
+	// PHONE NUMBER VALIDATION
 
 	if (number === "") {
 		setErrorMsg("#phoneNumber", "Phone Number Feild Cannot be Blank");
 		returnVal = false;
-	} else if (number.length < 10) {
+	} 
+	
+	else if (number.length < 10) {
 		setErrorMsg("#phoneNumber", "Please Enter Valid Mobile No");
 		returnVal = false;
 	}
 
 
 
-	// Password & Confirm Password Validation
+	// PASSWORD & CONFIRM PASSWORD VALIDATION
 
 	if (password === "") {
 		setErrorMsg("#password", "Password Feild Cannot be Blank");
 		returnVal = false;
-	} else if (password.length < 8) {
+	} 
+	
+	// Required character Validation
+	
+	else if (password.length < 8) {
 		setErrorMsg("#password", "Minimum 8 Characters Required");
 		returnVal = false;
 	}
@@ -354,17 +298,15 @@ function validateForm() {
 		returnVal = false;
 	}
 
-	//  else if (!passValidation(password)) {
-	//     setErrorMsg("#password", "Please Enter Valid Passworde - One Uppercase, One lowercase, One number & One Symbol");
-	//     returnVal = false;
-	//  }
-
 
 	//Confirm Password
+
 	if (cPassword === "") {
 		setErrorMsg("#cpPassword", "Confirm Password Feild Cannot be Blank");
 		returnVal = false;
-	} else if (cPassword !== password) {
+	} 
+	
+	else if (cPassword !== password) {
 		setErrorMsg("#cpPassword", "Confirm Password not Matched");
 		returnVal = false;
 	}
@@ -372,41 +314,33 @@ function validateForm() {
 
 	return returnVal;
 
+}
 
-    
 
-// Show and Hide Password
+// SHOW AND HIDE PASSWORD
 
 function togglePassword() {
-	let checkboxInput = document.querySelector("#password");
-	let checkboxInput1 = document.querySelector("#cpPassword");
-	// checkboxInput.map((currElem, index) => {
-	//     checkboxInput = checkboxInput[index];
 
+	let checkboxInput = document.querySelectorAll(".passImput");
 	let checkbox = document.querySelector("#log-input");
-	if (checkbox.checked) {
-		checkboxInput.type = "text";
-		checkboxInput1.type = "text";
-	} else {
-		checkboxInput.type = "password";
-		checkboxInput1.type = "password";
-	}
-	//   });
-}
+	
+	checkboxInput.forEach((currElem) => {
 
+		if (checkbox.checked) {
+			 currElem.type = "text";
+		} 
+		
+		else {
+			currElem.type = "password";
+		}
 
-
-// function togglePassword() {
-//     let checkboxInput = document.getElementById("password");
-//     if (checkboxInput.type === "password") {
-//       checkboxInput.type = "text";
-//     } else {
-//       checkboxInput.type = "password";
-//     }
-// }
-
+	})
 
 }
+
+
+
+
 
 
 
