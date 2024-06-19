@@ -56,7 +56,6 @@ const addBtnFunction = (text = "") => {
 	let removeBtn = noteSec.querySelector('.removeBtn');
 	let mainDiv = noteSec.querySelector('.main');
 	let contentArea = noteSec.querySelector('textarea');
-	let editBtnIcon = editBtn.querySelector('.fas');
     let editBtnTxt = editBtn.querySelector('.textEdit');
 
 
@@ -132,43 +131,54 @@ addBtn.addEventListener('click', () => addBtnFunction());
 
 
 
-// JS FORM VALIDATION START
+// SIGN UP FORM VALIDATION START
 
 let tablLower = document.querySelector('.tableLower')
 let input = document.querySelectorAll('input');
+
+
+
+// ADD EVENT LISTENER FOR CLICK ON INPUT
 
 input.addEventListener('click', feildNotBlank());
 
 function feildNotBlank() {
 
-	for (let i = 0; i < input.length; i++) {
+    for (let i = 0; i < input.length; i++) {
 
-		let inputValue = document.querySelectorAll('input')[i].value.trim();
+        let inputValue = document.querySelectorAll('input')[i].value.trim();
 
-		if (inputValue == '') {
+        // CHECK IF INPUT FIELD IS BLANK
 
-			errorMsg(inputName, `${inputName} ${'Cannot be Blank'}`)
+        if (inputValue == '') {
+            errorMsg(inputName, `${inputName} ${'Cannot be Blank'}`)
+        }
+    }
+}
 
-			// input.parentElement.tablLower.innerHTML = 'Feild Cannot be Blank';
-		}
-	}
+
+
+// SET ERROR MESSAGE IF VALIDATION FAILS
+
+function setErrorMsg(id, errorMsg) {
+
+    let falseInput = document.querySelector(id);
+    falseInput.nextElementSibling.innerHTML = errorMsg;
+    falseInput.classList.add("error");
+    // falseInput.forEach((curElem) => curElem.focus());
 
 }
 
 
-// LOGIN FORM VALIDATION
 
-let myform = document.querySelector("form");
+// CLEAR ERROR MESSAGE IF ERROR RESOLVED
 
+function clearErrorMsg(id) {
 
-// SET ERROR MSG IF VALIDATION FALSE
+    let validInput = document.querySelector(id);
+    validInput.nextElementSibling.innerHTML = "";
+    validInput.classList.remove("error");
 
-function setErrorMsg(id, errorMsg) {
-	let falseInput = document.querySelector(id);
-	// console.log(falseInput);
-	falseInput.nextElementSibling.innerHTML = errorMsg;
-	falseInput.classList.add("error");
-	// falseInput.forEach((curElem) => curElem.focus());
 }
 
 
@@ -176,148 +186,185 @@ function setErrorMsg(id, errorMsg) {
 // EMAIL VALIDATION FUNCTION
 
 function emailValidation(email) {
-	let atTheRateSymbol = email.indexOf("@");
-	let dot = email.lastIndexOf(".");
 
+    let atTheRateSymbol = email.indexOf("@");
 
-	// Check @ Symbol Occur at Begining, If yes then throw Error  
+    let dot = email.lastIndexOf(".");
 
-	if (atTheRateSymbol < 1) {
-		return false;
-	}
+    // CHECK @ SYMBOL OCCURS AT BEGINNING, IF YES THEN THROW ERROR  
 
-	// Check There Should be atleast two characters after @, If Not then throw Error 
-	else if (dot <= atTheRateSymbol + 2) {
-		return false;
-	}
+    if (atTheRateSymbol < 1) {
+        return false;
+    }
 
-	// Check There Should be atleast two characters after . , If Not then throw Error
-	else if (dot === email.length - 1 + 2) {
-		return false;
-	}
+    // CHECK THERE SHOULD BE AT LEAST TWO CHARACTERS AFTER @, IF NOT THEN THROW ERROR 
 
-	// If Validation Passed then return true
-	else {
-		return true;
-	}
+    else if (dot <= atTheRateSymbol + 2) {
+        return false;
+    }
 
+    // CHECK THERE SHOULD BE AT LEAST TWO CHARACTERS AFTER ., IF NOT THEN THROW ERROR
+
+    else if (dot === email.length - 1 + 2) {
+        return false;
+    }
+
+    // IF VALIDATION PASSES THEN RETURN TRUE
+
+    else {
+        return true;
+    }
 }
 
+
+
+
+// FORM VALIDATE FUNCTION 
 
 function validateForm() {
 
-	let returnVal = true;
+    let returnVal = true;
 
-    // Getting Value with Triming the Spaces of Left & Right Side.
+    // GETTING VALUE WITH TRIMMING THE SPACES OF LEFT & RIGHT SIDE.
 
-	let name = document.querySelector("#name").value.trim();
-	let email = document.querySelector("#email").value.trim();
-	let number = document.querySelector("#phoneNumber").value.trim();
-	let password = document.querySelector("#password").value.trim();
-	let cPassword = document.querySelector("#cpPassword").value.trim();
+    let name = document.querySelector("#name").value.trim();
+    let email = document.querySelector("#email").value.trim();
+    let number = document.querySelector("#phoneNumber").value.trim();
+    let password = document.querySelector("#password").value.trim();
+    let cPassword = document.querySelector("#cpPassword").value.trim();
 
 
+    // NAME VALIDATION
 
-	// NAME VALIDATION
+	// GETTENG NO OF WORDS IN NAME
 
-	if (name === "") {
-		setErrorMsg("#name", "Name Feild Cannot be Blank");
-		returnVal = false;
+	const wordNo = name.split(" ");
+	wordLength = wordNo.length;
+
+    if (name === "") {
+        setErrorMsg("#name", "Name Field Cannot be Blank");
+        returnVal = false;
+    }
+
+	else if (wordLength < 2 ) {
+		setErrorMsg("#name", "Please Enter Full Name (Atleast Two Words)");
+        returnVal = false;
+	}
+
+	else {
+		clearErrorMsg("#name");
 	}
 
 
+    // EMAIL VALIDATION
 
-	// EMAIL VALIDATION
-
-	if (email === "") {
-		setErrorMsg("#email", "Email Feild Cannot be Blank");
-		returnVal = false;
-	} 
+    if (email === "") {
+        setErrorMsg("#email", "Email Field Cannot be Blank");
+        returnVal = false;
+    } 
 	
 	else if (!emailValidation(email)) {
-		setErrorMsg("#email", "Please Enter Valid Email");
-		returnVal = false;
+        setErrorMsg("#email", "Please Enter Valid Email");
+        returnVal = false;
+    }
+
+	else {
+		clearErrorMsg("#email");
 	}
 
 
+    // PHONE NUMBER VALIDATION
 
-	// PHONE NUMBER VALIDATION
-
-	if (number === "") {
-		setErrorMsg("#phoneNumber", "Phone Number Feild Cannot be Blank");
-		returnVal = false;
-	} 
+    if (number === "") {
+        setErrorMsg("#phoneNumber", "Phone Number Field Cannot be Blank");
+        returnVal = false;
+    } 
 	
 	else if (number.length < 10) {
-		setErrorMsg("#phoneNumber", "Please Enter Valid Mobile No");
-		returnVal = false;
+        setErrorMsg("#phoneNumber", "Please Enter Valid Mobile No");
+        returnVal = false;
+    }
+
+	else {
+		clearErrorMsg("#phoneNumber");
 	}
 
 
+    // PASSWORD & CONFIRM PASSWORD VALIDATION
 
-	// PASSWORD & CONFIRM PASSWORD VALIDATION
+    if (password === "") {
+        setErrorMsg("#password", "Password Field Cannot be Blank");
+        returnVal = false;
+    }
 
-	if (password === "") {
-		setErrorMsg("#password", "Password Feild Cannot be Blank");
-		returnVal = false;
-	} 
-	
-	// Required character Validation
-	
-	else if (password.length < 8) {
-		setErrorMsg("#password", "Minimum 8 Characters Required");
-		returnVal = false;
+    // REQUIRED CHARACTER VALIDATION
+
+    else if (password.length < 8) {
+        setErrorMsg("#password", "Minimum 8 Characters Required");
+        returnVal = false;
+    }
+
+    // UPPER CASE VALIDATION
+
+    else if (password.search(/[A-Z]/) == -1) {
+        setErrorMsg("#password", "Please Enter Valid Password - One Uppercase, One Lowercase, One Number & One Symbol");
+        returnVal = false;
+    }
+
+    // LOWER CASE VALIDATION
+
+    else if (password.search(/[a-z]/) == -1) {
+        setErrorMsg("#password", "Please Enter Valid Password - One Uppercase, One Lowercase, One Number & One Symbol");
+        returnVal = false;
+    }
+
+    // NUMBER VALIDATION
+
+    else if (password.search(/[0-9]/) == -1) {
+        setErrorMsg("#password", "Please Enter Valid Password - One Uppercase, One Lowercase, One Number & One Symbol");
+        returnVal = false;
+    }
+
+    // SYMBOL VALIDATION
+
+    else if (password.search(/[@\#\?\!\@\$\&]/) == -1) {
+        setErrorMsg("#password", "Please Enter Valid Password - One Uppercase, One Lowercase, One Number & One Symbol");
+        returnVal = false;
+    }
+
+	else {
+		clearErrorMsg("#password");
 	}
 
-	// Upper Case Validation
 
-	else if (password.search(/[A-Z]/) == -1) {
-		setErrorMsg("#password", "Please Enter Valid Passworde - One Uppercase, One lowercase, One number & One Symbol");
-		returnVal = false;
-	}
+    // CONFIRM PASSWORD VALIDATION
 
-	// Lower Case Validation
-
-	else if (password.search(/[a-z]/) == -1) {
-		setErrorMsg("#password", "Please Enter Valid Passworde - One Uppercase, One lowercase, One number & One Symbol");
-		returnVal = false;
-	}
-
-	// Number Validation
-
-	else if (password.search(/[0-9]/) == -1) {
-		setErrorMsg("#password", "Please Enter Valid Passworde - One Uppercase, One lowercase, One number & One Symbol");
-		returnVal = false;
-	}
-
-
-	// Symbol Validation
-
-	else if (password.search(/[@\#\?\!\@\$\&]/) == -1) {
-		setErrorMsg("#password", "Please Enter Valid Passworde - One Uppercase, One lowercase, One number & One Symbol");
-		returnVal = false;
-	}
-
-
-	//Confirm Password
-
-	if (cPassword === "") {
-		setErrorMsg("#cpPassword", "Confirm Password Feild Cannot be Blank");
-		returnVal = false;
-	} 
+    if (cPassword === "") {
+        setErrorMsg("#cpPassword", "Confirm Password Field Cannot be Blank");
+        returnVal = false;
+    } 
 	
 	else if (cPassword !== password) {
-		setErrorMsg("#cpPassword", "Confirm Password not Matched");
-		returnVal = false;
+        setErrorMsg("#cpPassword", "Confirm Password Not Matched");
+        returnVal = false;
+    }
+
+	else {
+		clearErrorMsg("#cpPassword");
 	}
 
-
-	return returnVal;
-
+    return returnVal;
 }
 
 
-// SHOW AND HIDE PASSWORD
+
+
+
+
+
+
+
+// SHOW AND HIDE (TOGGLE) PASSWORD
 
 function togglePassword() {
 

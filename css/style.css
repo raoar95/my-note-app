@@ -24,7 +24,8 @@ body {
 
 .head-logo {
     font-size: 2rem;
-    font-family: fantasy;
+    font-family: sans-serif;
+    font-weight: bolder;
 }
 
 .btnSec, .noteSec, .iconSec {
@@ -257,3 +258,22 @@ input::-webkit-inner-spin-button {
 .register-pannel {
     width: 560px;
 }
+
+
+
+
+/* RESPONSIVE CSS  */
+
+@media only screen and (max-width: 420px) {
+
+    .head-logo {
+        font-size: 1.6rem;
+    }
+
+    .panel {
+        width: 100%;
+        padding: 20px;
+        margin: auto !important;
+    }
+
+  }
